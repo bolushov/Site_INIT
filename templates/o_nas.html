@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИНИТ</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <!-- #главное меню -->
+    <div class="body">
+        <header class="header">
+            <div class="container">
+                <ul class="menu">
+                    <a href="{% url 'kafedra_list' %}">
+                        <img class="logo" src="{% static 'image/init_logo.png' %}" alt="" id="init_logo">
+                    </a>
+                    <li class="text_init">ИНСТИТУТ НОВЫХ ИНФОРМАЦИОННЫХ ТЕХНОЛОГИИ</li>
+                    <li class="dropdown">
+                        <a href="{% url 'kafedra_list' %}" class="dropdown-toggle">НАПРАВЛЕНИЕ <span class="menu-down">
+                                <img src="{% static 'image/icon/_.png' %}" alt=""></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for kafedra_item in kafedra %}
+                            <li>
+                                <a href="{{ kafedra_item.get_absolute_url }}">{{ kafedra_item.title }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'enrolee_list' %}">АБИТУРИЕНТ</a></li>
+                    <li><a href="{% url 'contacts' %}">КОНТАКТЫ </a></li>
+                    <li><a href="{% url 'about_us' %}"> О НАС</a></li>
+                    <li class="avn"><a href="https://avn.arabaev.kg/">AVN</a></li>
+                </ul>
+            </div>
+        </header>
+       <br><br><br><br><br><br><br>
+        <!-- Контент о нас -->
+        <div class="container mx-auto my-8">
+            <div class="text-center mb-8">
+                {% for about in about_info %}
+                <p class="text-3xl font-bold">{{ about.title}}</p>
+            </div>
+            <div class="services">
+                <div class="col-md-6 mx-auto">
+                    <p>{{ about.text | safe }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <!-- footer -->
+        <footer class="bg-gray-900 text-white py-8">
+            <div class="container mx-auto flex justify-between items-center">
+                <img src="{% static 'image/init_logo.png' %}" alt="Логотип" class="w-16 h-16">
+
+                <div class="info text-center">
+                    <p class="text-lg font-semibold">Институт новых информационных технологий</p>
+                    <p class="text-sm">+ (312) 66-03-47 | 720026, Бишкек шаары, И. Раззаков 51 А |
+                        info@arabaevksu.edu.kg
+                    </p>
+                </div>
+
+                <div class="social-links flex space-x-4">
+                    <a href="#" class="block text-white hover:text-gray-400"><img
+                            src="{% static 'image/facebook.png' %}" alt="Facebook" class="w-6 h-6"></a>
+                    <a href="#" class="block text-white hover:text-gray-400"><img src="{% static 'image/tik-tok.png' %}"
+                            alt="TikTok" class="w-6 h-6"></a>
+                    <a href="#" class="block text-white hover:text-gray-400"><img
+                            src="{% static 'image/instagram.png' %}" alt="Instagram" class="w-6 h-6"></a>
+                </div>
+            </div>
+        </footer>
+        <!-- footer -->
+</body>
+
+</html>

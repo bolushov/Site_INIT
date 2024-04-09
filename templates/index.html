@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>ИНИТ</title>
+</head>
+
+<body>
+    <!-- #главное меню -->
+    <div class="body">
+        <header class="header">
+            <div class="container">
+                <ul class="menu">
+                    <a href="{% url 'kafedra_list' %}">
+                        <img class="logo" src="{% static 'image/init_logo.png' %}" alt="" id="init_logo">
+                    </a>
+                    <li class="text_init">ИНСТИТУТ НОВЫХ ИНФОРМАЦИОННЫХ ТЕХНОЛОГИИ</li>
+                    <li class="dropdown">
+                        <a href="{% url 'kafedra_list' %}" class="dropdown-toggle">НАПРАВЛЕНИЕ <span class="menu-down">
+                                <img src="{% static 'image/icon/_.png' %}" alt=""></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% if kafedras %}
+                            {% for kafedra in kafedras %}
+                            <li>
+                                <a href="{% url 'kafedra_detail' slug=kafedra.slug %}">{{ kafedra.title }}</a>
+                            </li>
+                            {% endfor %}
+                            {% else %}
+                            <li>Кафедры отсутствуют</li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'enrolee_list' %}">АБИТУРИЕНТ</a></li>
+                    <li><a href="{% url 'contacts' %}">КОНТАКТЫ </a></li>
+                    <li><a href="{% url 'about_us' %}"> О НАС</a></li>
+                    <li class="avn"><a href="https://avn.arabaev.kg/">AVN</a></li>
+                </ul>
+            </div>
+        </header>
+        <div class="slider-container">
+            <div class="image_fon">
+                {% for slide in slides %}
+                <img src="{{ slide.slide.url }}" alt="{{ slide.title }}">
+                {% endfor %}
+            </div>
+            <div class="left-arrow">&#10094;</div>
+            <div class="right-arrow">&#10095;</div>
+        </div>
+        <!-- #главное меню -->
+        <div class="bottom-slider">
+            <div class="left-gap"></div>
+            <div class="slider-item">
+                <a href="{% url 'photo_gallery' %}">
+                    <img src="{% static 'image/photoeditorsdk-export (4).png' %}" alt="">
+                </a>
+            </div>
+            <div class="slider-item">
+                <a href="{% url 'education_list' %}">
+                    <img src="{% static 'image/photoeditorsdk-export (1).png' %}" alt="">
+
+                </a>
+            </div>
+            <div class="slider-item">
+                <a href="{% url 'cooperation_list' %}">
+                    <img src="{% static 'image/photoeditorsdk-export (3).png' %}" alt="">
+                </a>
+            </div>
+            <div class="slider-item">
+                <a href="{% url 'science_list' %}">
+                    <img src="{% static 'image/2.png' %}" alt="">
+                </a>
+            </div>
+            <div class="right-gap"></div>
+        </div>
+        <!-- #новости -->
+        <div class="news-container">
+            <div class="news-left">
+                <div class="news-header">
+                    <h2 onclick="toggleNewsContent('.news-content')">Новости</h2>
+                    <h2 onclick="toggleNewsContent('.news-content1')">Объявления</h2>
+                    <h2 onclick="toggleNewsContent('.news-content2')">События</h2>
+                </div>
+                <div class="news-content">
+                    {% for news in news_info %}
+                    <div class="news-item">
+                        <img src="{{ news.news_image.url }}" alt="">
+                        <p>{{ news.text }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="news-content1" style="display: none;">
+                    {% for ad in ads_info %}
+                    <div class="news-item">
+                        <img src="{{ ad.ads_image.url }}" alt="">
+                        <p>{{ ad.text }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="news-content2" style="display: none;">
+                    {% for events in events_info %}
+                    <div class="news-item">
+                        <img src="{{ events.events_image.url }}" alt="">
+                        <p>{{ events.text }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="news-right">
+                {% for director in director_info %}
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">{{ director.title }}</h2>
+                    <div class="blog-image">
+                        <img src="{{ director.director_image.url }}" alt="{{ director.title }}" class="w-full">
+                    </div>
+                    <div class="blog-description mt-0">
+                        <p class="text-gray-700">{{ director.text | safe }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>            
+        </div>
+        <!-- #Фотогалерея -->
+        <div class="gallery-container">
+            <div class="gallery-left">
+                <h2>Полезные ссылки</h2>
+                <div class="useful-links">
+                    <p><a href="https://limon.kg/ru">IT</a></p>
+                    <p><a href="https://it.limon.kg/profiles/?hl=ru">Полезные курсы</a></p>
+                    <p><a href="https://bishkek.headhunter.kg/">Работа</a></p>
+                    <p><a href="https://1fit.app/">Спорт</a></p>
+                    <p><a href="https://www.instagram.com/_volunteer.kg/">Волонтерства</a></p>
+                </div>
+            </div>
+            <div class="gallery-right">
+                <p class="p1" id="fotogaleria">Фотогалерея</p>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    {% for photo in photo_info %}
+                    <div class="relative">
+                        <img src="{{ photo.photo.url }}" alt="" class="object-cover w-full h-full">
+                        <p
+                            class="absolute bottom-0 left-0 w-full bg-white bg-opacity-75 px-2 py-1 text-center text-gray-800 font-semibold">
+                            {{ photo.text }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- #Видеогалерея -->
+        <div class="video-gallery-container">
+            <div class="video-gallery-header">
+                <p class="p1" id="fotogaleria">Видеогалерея</p>
+            </div>
+            <div class="video-gallery">
+                <div class="video-controls">
+                    <button class="prev-button">&#10094;</button>
+                </div>
+                <div class="video-row">
+                    {% for video in video_info %}
+                    {% if forloop.counter <= 2 and video.video_file %} <div class="video-item mx-4 mb-4">
+                        <video width="400" height="300" controls class="border border-gray-300 rounded-md">
+                            <source src="{{ video.video_file.url }}" type="video/mp4">
+                            Ваш браузер не поддерживает тег video.
+                        </video>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="video-controls">
+                <button class="next-button">&#10095;</button>
+            </div>
+            <div class="more-link">
+                <p class="p1" id="fotogaleria">
+                    <a href="{% url 'video_gallery' %}">Подробнее</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto flex justify-between items-center">
+            <img src="{% static 'image/init_logo.png' %}" alt="Логотип" class="w-16 h-16">
+
+            <div class="info text-center">
+                <p class="text-lg font-semibold">Институт новых информационных технологий</p>
+                <p class="text-sm">+ (312) 66-03-47 | 720026, Бишкек шаары, И. Раззаков 51 А | info@arabaevksu.edu.kg
+                </p>
+            </div>
+
+            <div class="social-links flex space-x-4">
+                <a href="#" class="block text-white hover:text-gray-400"><img src="{% static 'image/facebook.png' %}"
+                        alt="Facebook" class="w-6 h-6"></a>
+                <a href="#" class="block text-white hover:text-gray-400"><img src="{% static 'image/tik-tok.png' %}"
+                        alt="TikTok" class="w-6 h-6"></a>
+                <a href="#" class="block text-white hover:text-gray-400"><img src="{% static 'image/instagram.png' %}"
+                        alt="Instagram" class="w-6 h-6"></a>
+            </div>
+        </div>
+    </footer>
+    <!-- footer -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const tabs = document.querySelectorAll('.news-header h2');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    tabs.forEach(t => t.classList.remove('active')); // Удаление класса активности у всех вкладок
+                    this.classList.add('active'); // Добавление класса активности к текущей вкладке
+                });
+            });
+        });
+    </script>
+    <script>
+        function toggleNewsContent(contentClass) {
+            var contents = document.querySelectorAll('.news-content, .news-content1, .news-content2');
+            contents.forEach(function (content) {
+                if (content.classList.contains(contentClass.slice(1))) {
+                    content.style.display = 'block';
+                } else {
+                    content.style.display = 'none';
+                }
+            });
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            const firstVideoRow = document.querySelector('.video-row');
+            const secondVideoRow = document.querySelector('.video-row:nth-child(4)');
+
+            prevButton.addEventListener('click', function () {
+                firstVideoRow.style.display = 'flex';
+                secondVideoRow.style.display = 'none';
+            });
+
+            nextButton.addEventListener('click', function () {
+                firstVideoRow.style.display = 'none';
+                secondVideoRow.style.display = 'flex';
+            });
+        });
+    </script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

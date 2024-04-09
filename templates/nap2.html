@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/napravlenie.css">
+    <title>ИНИТ</title>
+</head>
+<body>
+    <!-- #главное меню -->
+  <header class="header">
+    <div class="container">
+            <ul class="menu">
+                <a href="../../index.html"><img class="logo" src="../../image/init_logo.png" alt="" id="init_logo"></a>
+                <li class="text_init">ИНСТИТУТ НОВЫХ ИНФОРМАЦИОННЫХ ТЕХНОЛОГИИ</li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">НАПРАВЛЕНИЕ <span class="menu-down"><img src="image/icon/_.png" alt=""></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="nap1.html">Информационные и вычислительные технологии</a></li>
+                        <li><a href="nap2.html">Информационные системы технологии</a></li>
+                        <li><a href="nap3.html">Прикладная информатика бакалавр</a></li>
+                        <li><a href="nap4.html">Прикладная информатика магистр</a></li>
+                        <li><a href="nap5.html">Интернет технологии и управлении</a></li>
+                        <li><a href="nap6.html">Учитель информатики</a></li>
+                    </ul>
+                </li>
+                
+                <li><a href="../../html/postupai.html">ПОСТУПЛЕНИЕ</a></li>
+                <li><a href="#f1">КОНТАКТЫ </a></li>
+                <li><a href="../../index.html"> О НАС</a></li>
+                <li class="avn" ><a href="https://avn.arabaev.kg/">AVN</a></li>
+            </ul>
+    </div>
+</header>
+
+
+<div class="container_2">
+    <!-- Цветной блок -->
+    <div class="blurry-image"></div>
+
+    <!-- Блоки с текстом -->
+    <div class="buttons">
+        <p>Добро пожаловать <br>Информационные системы технологии </p>
+        
+</div>
+</div>
+
+<section>
+    <div>
+        <div class="image_nap"> 
+            <img src="../../image/naprav/nap2.png" alt="">
+        </div>
+    </div>
+</section>
+
+        <footer class="footer">
+    
+    <img src="../../image/init_logo.png" alt="Логотип" class="logofooter">
+
+<div class="info">
+    <p id="f1">Институт новых информационных технологий</p>
+    <p>+ (312) 66-03-47 | 720026, Бишкек шаары, И. Раззаков 51 А | info@arabaevksu.edu.kg</p>
+</div>
+<div class="social-links">
+    <a href="#"><img src="facebook.png" alt="Facebook"></a>
+    <a href="#"><img src="tiktok.png" alt="TikTok"></a>
+    <a href="#"><img src="instagram.png" alt="Instagram"></a>
+</div>
+</footer>
+<script>
+    function showText(textId) {
+        var texts = document.querySelectorAll('.text_div > div');
+        texts.forEach(function(text) {
+            if (text.classList.contains(textId)) {
+                text.style.display = 'block';
+            } else {
+                text.style.display = 'none';
+            }
+        });
+    }
+</script>
+</body>
+</html>

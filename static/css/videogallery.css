@@ -1,0 +1,20 @@
+.container_3 {
+   
+    width: calc(100% - 200px); /* Ширина блока минус внешние отступы */
+    height: calc(100vh - 200px); /* Высота блока минус внешние отступы */
+    margin: 50px; /* Внешние отступы 100px со всех сторон */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 столбца */
+    grid-template-rows: repeat(4, 1fr); /* 4 строки */
+    gap: 10px; /* Промежуток между видео */
+    margin-bottom: 500px;
+}
+
+.video {
+    
+    background-color: #f0f0f0; /* Цвет фона для видео */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
